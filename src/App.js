@@ -19,7 +19,26 @@ import {
 } from "./Redux/Comments/actionsCreators";
 
 export default function App({ counter, onIncrement, onDecrement, onReset }) {
+	const store = legacy_createStore(
+		combineReducers({
+			Users: UserReducer,
+			Courses: CourseReducer,
+			Comments: CommentReducer,
+		})
+	);
 
+	// store.subscribe(() => console.log(store.getState()));
+	// store.dispatch(addUserActionCreator(1, "Yashar"));
+	// store.dispatch(addUserActionCreator(2, "Moji"));
+	// store.dispatch(removeUserActionCreator(2));
+
+	// store.dispatch(addCourseActionCreator(1, "JavaScript"));
+	// store.dispatch(addCourseActionCreator(2, "Redux"));
+	// store.dispatch(removeCourseActionCreator(2));
+
+	// store.dispatch(addCommentActionCreator(1, "Eshi", 'hi, lets get down to business!'));
+	// store.dispatch(addCommentActionCreator(2, "Yasin", 'hey, lets go to defeat the hunt'));
+	// store.dispatch(removeCommentActionCreator(2));
 
 	return (
 		<div className="container m-auto flex flex-col items-center justify-center">
