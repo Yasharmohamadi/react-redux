@@ -1,6 +1,6 @@
 import { addCourseActionType, removeCourseActionType } from "./actionsTypes";
 
-export const addCourseActionCreator = (title, id) => {
+export const addCourseActionCreator = (id, title) => {
     return {
         id,
         title,
