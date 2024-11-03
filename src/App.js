@@ -1,5 +1,5 @@
 import React from "react";
-import { combineReducers, legacy_createStore } from "redux";
+import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
 // add reducers
 import UserReducer from "./Redux/Users/reducer";
 import CourseReducer from "./Redux/Courses/reducer";
@@ -17,6 +17,8 @@ import {
 	addCommentActionCreator,
 	removeCommentActionCreator,
 } from "./Redux/Comments/actionsCreators";
+// import middle wares
+import { Logger } from "./Redux/MiddleWare/Logger";
 
 export default function App({ counter, onIncrement, onDecrement, onReset }) {
 	const store = legacy_createStore(
@@ -24,11 +26,11 @@ export default function App({ counter, onIncrement, onDecrement, onReset }) {
 			Users: UserReducer,
 			Courses: CourseReducer,
 			Comments: CommentReducer,
-		})
+		}), applyMiddleware(Logger)
 	);
 
-	// store.subscribe(() => console.log(store.getState()));
-	// store.dispatch(addUserActionCreator(1, "Yashar"));
+	store.subscribe(() => console.log(store.getState()));
+	store.dispatch(addUserActionCreator(1, "Yashar"));
 	// store.dispatch(addUserActionCreator(2, "Moji"));
 	// store.dispatch(removeUserActionCreator(2));
 
