@@ -1,13 +1,23 @@
 import React from "react";
 import { legacy_createStore } from "redux";
 import UserReducer from "./Redux/Users/reducer";
+import CourseReducer from "./Redux/Courses/reducer";
 import {
 	addUserActionCreator,
 	removeUserActionCreator,
 } from "./Redux/Users/actionsCreators";
+import {
+	addCourseActionCreator,
+	removeCourseActionCreator,
+} from "./Redux/Courses/actionsCreators";
 
 export default function App({ counter, onIncrement, onDecrement, onReset }) {
-	const store = legacy_createStore(UserReducer);
+	const store = legacy_createStore(CourseReducer);
+
+	console.log(store.getState());
+	// store.dispatch(addCourseActionCreator('js' , 1))
+	// store.dispatch(addCourseActionCreator('ts' , 2))
+	console.log(store.getState());
 
 	return (
 		<div className="container m-auto flex flex-col items-center justify-center">
