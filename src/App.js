@@ -1,18 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
+import { legacy_createStore } from "redux";
+import UserReducer from "./Redux/Users/reducer";
+import {
+	addUserActionCreator,
+	removeUserActionCreator,
+} from "./Redux/Users/actionsCreators";
 
-export default function App({counter , onIncrement, onDecrement, onReset}) {
+export default function App({ counter, onIncrement, onDecrement, onReset }) {
+	const store = legacy_createStore(UserReducer);
+
 	return (
-		<div class="container m-auto flex flex-col items-center justify-center">
-			<h2 class="text-xl mt-8 mb-4 text-[#5f9ea0]">Counter Project</h2>
-			<div class="">
-				<h1 class="text-4xl mb-2 text-[#5f9ea0] text-center">{counter}</h1>
-				<button class="btn" id="decrement" onClick={onDecrement}>
+		<div className="container m-auto flex flex-col items-center justify-center">
+			<h2 className="text-xl mt-8 mb-4 text-[#5f9ea0]">Counter Project</h2>
+			<div className="">
+				<h1 className="text-4xl mb-2 text-[#5f9ea0] text-center">{counter}</h1>
+				<button className="btn" id="decrement" onClick={onDecrement}>
 					decrement
 				</button>
-				<button class="btn" id="reset" onClick={onReset} >
+				<button className="btn" id="reset" onClick={onReset}>
 					reset
 				</button>
-				<button class="btn" id="increment" onClick={onIncrement}>
+				<button className="btn" id="increment" onClick={onIncrement}>
 					increment
 				</button>
 			</div>

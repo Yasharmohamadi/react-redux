@@ -3,12 +3,12 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-import { store } from "./Redux/store";
+import { store } from "./Redux/Counter/store";
 import {
 	incrementActionCreator,
 	decrementActionCreator,
-  resetActionCreator
-} from "./Redux/actionCreators";
+	resetActionCreator,
+} from "./Redux/Counter/actionCreators";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const render = () =>
@@ -25,5 +25,5 @@ const render = () =>
 
 render();
 
-const unsubscribe = store.subscribe(render);
+// const unsubscribe = store.subscribe(render);
 // unsubscribe() // stop subscribing
