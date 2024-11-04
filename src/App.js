@@ -10,14 +10,14 @@ import {
 	// removeUserActionCreator,
 	getUsersActionCreatorStart
 } from "./Redux/Users/actionsCreators";
-// import {
-// 	addCourseActionCreator,
-// 	removeCourseActionCreator,
-// } from "./Redux/Courses/actionsCreators";
-// import {
-// 	addCommentActionCreator,
-// 	removeCommentActionCreator,
-// } from "./Redux/Comments/actionsCreators";
+import {
+	addCourseActionCreator,
+	removeCourseActionCreator,
+} from "./Redux/Courses/actionsCreators";
+import {
+	addCommentActionCreator,
+	removeCommentActionCreator,
+} from "./Redux/Comments/actionsCreators";
 // import middle wares
 import { Logger } from "./Redux/MiddleWare/Logger";
 import { ApiCall } from "./Redux/MiddleWare/ApiCall";
