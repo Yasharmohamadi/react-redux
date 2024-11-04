@@ -1,4 +1,7 @@
-import { getUsersActionCreatorSuccess } from "../Users/actionsCreators";
+import {
+	getUsersActionCreatorError,
+	getUsersActionCreatorSuccess,
+} from "../Users/actionsCreators";
 import { getUsersActionTypeStart } from "../Users/actionsTypes";
 
 export const ApiCall = ({ dispatch }) => (next) => (action) => {
@@ -8,5 +11,6 @@ export const ApiCall = ({ dispatch }) => (next) => (action) => {
 
 	fetch(action.url)
 		.then((response) => response.json())
-		.then((data) => dispatch(getUsersActionCreatorSuccess(data)));
+		.then((data) => dispatch(getUsersActionCreatorSuccess(data)))
+		.catch((error) => dispatch(getUsersActionCreatorError(error)));
 };
