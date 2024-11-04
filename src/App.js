@@ -1,23 +1,23 @@
 import React from "react";
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
 // add reducers
-import UserReducer from "./Redux/Users/reducer";
-import CourseReducer from "./Redux/Courses/reducer";
-import CommentReducer from "./Redux/Comments/reducer";
+import UserReducer from "./Redux/Stores/Users";
+import CourseReducer from "./Redux/Stores/Courses";
+import CommentReducer from "./Redux/Stores/Comments";
 // add actions creators
 import {
 	// addUserActionCreator,
 	// removeUserActionCreator,
 	getUsersActionCreatorStart
-} from "./Redux/Users/actionsCreators";
+} from "./Redux/Stores/Users";
 import {
 	addCourseActionCreator,
 	removeCourseActionCreator,
-} from "./Redux/Courses/actionsCreators";
+} from "./Redux/Stores/Courses";
 import {
 	addCommentActionCreator,
 	removeCommentActionCreator,
-} from "./Redux/Comments/actionsCreators";
+} from "./Redux/Stores/Comments";
 // import middle wares
 import { Logger } from "./Redux/MiddleWare/Logger";
 import { ApiCall } from "./Redux/MiddleWare/ApiCall";

@@ -1,8 +1,8 @@
 import {
-	getUsersActionCreatorError,
 	getUsersActionCreatorSuccess,
-} from "../Users/actionsCreators";
-import { getUsersActionTypeStart } from "../Users/actionsTypes";
+	getUsersActionCreatorError,
+	getUsersActionTypeStart,
+} from "../Stores/Users";
 
 export const ApiCall = ({ dispatch }) => (next) => (action) => {
 	if (action.type !== getUsersActionTypeStart) {
