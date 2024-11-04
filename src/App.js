@@ -5,18 +5,18 @@ import UserReducer from "./Redux/Users/reducer";
 import CourseReducer from "./Redux/Courses/reducer";
 import CommentReducer from "./Redux/Comments/reducer";
 // add actions creators
-import {
-	addUserActionCreator,
-	removeUserActionCreator,
-} from "./Redux/Users/actionsCreators";
-import {
-	addCourseActionCreator,
-	removeCourseActionCreator,
-} from "./Redux/Courses/actionsCreators";
-import {
-	addCommentActionCreator,
-	removeCommentActionCreator,
-} from "./Redux/Comments/actionsCreators";
+// import {
+// 	addUserActionCreator,
+// 	removeUserActionCreator,
+// } from "./Redux/Users/actionsCreators";
+// import {
+// 	addCourseActionCreator,
+// 	removeCourseActionCreator,
+// } from "./Redux/Courses/actionsCreators";
+// import {
+// 	addCommentActionCreator,
+// 	removeCommentActionCreator,
+// } from "./Redux/Comments/actionsCreators";
 // import middle wares
 import { Logger } from "./Redux/MiddleWare/Logger";
 
@@ -26,11 +26,11 @@ export default function App({ counter, onIncrement, onDecrement, onReset }) {
 			Users: UserReducer,
 			Courses: CourseReducer,
 			Comments: CommentReducer,
-		}), applyMiddleware(Logger)
+		}), applyMiddleware(Logger('test params'))
 	);
 
 	store.subscribe(() => console.log(store.getState()));
-	store.dispatch(addUserActionCreator(1, "Yashar"));
+	// store.dispatch(addUserActionCreator(1, "Yashar"));
 	// store.dispatch(addUserActionCreator(2, "Moji"));
 	// store.dispatch(removeUserActionCreator(2));
 
