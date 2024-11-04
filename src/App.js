@@ -5,10 +5,11 @@ import UserReducer from "./Redux/Users/reducer";
 import CourseReducer from "./Redux/Courses/reducer";
 import CommentReducer from "./Redux/Comments/reducer";
 // add actions creators
-// import {
-// 	addUserActionCreator,
-// 	removeUserActionCreator,
-// } from "./Redux/Users/actionsCreators";
+import {
+	// addUserActionCreator,
+	// removeUserActionCreator,
+	getUsersActionCreatorStart
+} from "./Redux/Users/actionsCreators";
 // import {
 // 	addCourseActionCreator,
 // 	removeCourseActionCreator,
@@ -19,6 +20,7 @@ import CommentReducer from "./Redux/Comments/reducer";
 // } from "./Redux/Comments/actionsCreators";
 // import middle wares
 import { Logger } from "./Redux/MiddleWare/Logger";
+import { ApiCall } from "./Redux/MiddleWare/ApiCall";
 
 export default function App({ counter, onIncrement, onDecrement, onReset }) {
 	const store = legacy_createStore(
@@ -26,21 +28,11 @@ export default function App({ counter, onIncrement, onDecrement, onReset }) {
 			Users: UserReducer,
 			Courses: CourseReducer,
 			Comments: CommentReducer,
-		}), applyMiddleware(Logger('test params'))
+		}), applyMiddleware(Logger('test params'), ApiCall)
 	);
 
 	store.subscribe(() => console.log(store.getState()));
-	// store.dispatch(addUserActionCreator(1, "Yashar"));
-	// store.dispatch(addUserActionCreator(2, "Moji"));
-	// store.dispatch(removeUserActionCreator(2));
-
-	// store.dispatch(addCourseActionCreator(1, "JavaScript"));
-	// store.dispatch(addCourseActionCreator(2, "Redux"));
-	// store.dispatch(removeCourseActionCreator(2));
-
-	// store.dispatch(addCommentActionCreator(1, "Eshi", 'hi, lets get down to business!'));
-	// store.dispatch(addCommentActionCreator(2, "Yasin", 'hey, lets go to defeat the hunt'));
-	// store.dispatch(removeCommentActionCreator(2));
+	store.dispatch(getUsersActionCreatorStart("https://jsonplaceholder.typicode.com/users"))
 
 	return (
 		<div className="container m-auto flex flex-col items-center justify-center">

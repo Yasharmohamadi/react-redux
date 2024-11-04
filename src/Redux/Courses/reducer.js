@@ -1,4 +1,4 @@
-import { addCourseActionType, removeCourseActionType } from "./actionsTypes";
+import { addCourseActionType, removeCourseActionType} from "./actionsTypes";
 
 export default function Reducer(state = [], action) {
 	switch (action.type) {
