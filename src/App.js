@@ -8,7 +8,7 @@ import CommentReducer from "./Redux/Stores/Comments";
 import {
 	addUserActionCreator,
 	// removeUserActionCreator,
-	getUsersActionCreatorStart
+	getUsersActionCreatorStart,
 } from "./Redux/Stores/Users";
 // import {
 // 	addCourseActionCreator,
@@ -24,6 +24,9 @@ import { Logger } from "./Redux/MiddleWare/Logger";
 import { ApiCall } from "./Redux/MiddleWare/ApiCall";
 // import redux-thunk
 import { thunk } from "redux-thunk";
+// import redux-logger
+import logger from "redux-logger";
+
 
 export default function App({ counter, onIncrement, onDecrement, onReset }) {
 	const store = legacy_createStore(
@@ -32,7 +35,7 @@ export default function App({ counter, onIncrement, onDecrement, onReset }) {
 			Courses: CourseReducer,
 			Comments: CommentReducer,
 		}),
-		applyMiddleware(Logger("test params"), ApiCall, thunk)
+		applyMiddleware(Logger("test params"), ApiCall, thunk, logger)
 	);
 
 	store.subscribe(() => console.log(store.getState()));
