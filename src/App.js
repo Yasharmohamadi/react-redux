@@ -6,21 +6,23 @@ import CourseReducer from "./Redux/Stores/Courses";
 import CommentReducer from "./Redux/Stores/Comments";
 // add actions creators
 import {
-	// addUserActionCreator,
+	addUserActionCreator,
 	// removeUserActionCreator,
-	getUsersActionCreatorStart
+	// getUsersActionCreatorStart
 } from "./Redux/Stores/Users";
-import {
-	addCourseActionCreator,
-	removeCourseActionCreator,
-} from "./Redux/Stores/Courses";
-import {
-	addCommentActionCreator,
-	removeCommentActionCreator,
-} from "./Redux/Stores/Comments";
+// import {
+// 	addCourseActionCreator,
+// 	removeCourseActionCreator,
+// } from "./Redux/Stores/Courses";
+// import {
+// 	addCommentActionCreator,
+// 	removeCommentActionCreator,
+// } from "./Redux/Stores/Comments";
 // import middle wares
 import { Logger } from "./Redux/MiddleWare/Logger";
 import { ApiCall } from "./Redux/MiddleWare/ApiCall";
+// import redux-thunk
+import {thunk} from 'redux-thunk'
 
 export default function App({ counter, onIncrement, onDecrement, onReset }) {
 	const store = legacy_createStore(
@@ -28,11 +30,12 @@ export default function App({ counter, onIncrement, onDecrement, onReset }) {
 			Users: UserReducer,
 			Courses: CourseReducer,
 			Comments: CommentReducer,
-		}), applyMiddleware(Logger('test params'), ApiCall)
+		}), applyMiddleware(Logger('test params'), ApiCall, thunk), 
 	);
 
 	store.subscribe(() => console.log(store.getState()));
-	store.dispatch(getUsersActionCreatorStart("https://jsonplaceholder.typicode.com/users"))
+	store.dispatch(addUserActionCreator(1, "Yashar"))
+	// store.dispatch(getUsersActionCreatorStart("https://jsonplaceholder.typicode.com/users"))
 
 	return (
 		<div className="container m-auto flex flex-col items-center justify-center">
