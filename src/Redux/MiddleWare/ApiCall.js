@@ -4,6 +4,7 @@ import {
 	getUsersActionTypeStart,
 } from "../Stores/Users";
 
+
 export const ApiCall = ({ dispatch }) => (next) => (action) => {
 	if (action.type !== getUsersActionTypeStart) {
 		return next(action);
