@@ -4,8 +4,6 @@ import App from "./App";
 import "./index.css";
 // import redux
 import { legacy_createStore } from "redux";
-// import react-redux provider
-import { Provider } from "react-redux";
 // import component
 import Counter from "./Components/Counter";
 // -------- COUNTER STORE ---------
@@ -30,9 +28,7 @@ const render = () =>
 				onIncrement={() => CounterStore.dispatch(incrementActionCreator())}
 				onDecrement={() => CounterStore.dispatch(decrementActionCreator())}
 			/>
-			<Provider store={CounterStore}>
-				<App />
-			</Provider>
+			<App />
 		</React.StrictMode>
 	);
 // run render arrow function

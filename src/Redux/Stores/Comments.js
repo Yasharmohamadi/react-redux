@@ -11,7 +11,7 @@ export default function Reducer(state = [], action) {
 		case addCommentActionType: {
 			let newComment = {
 				id: action.id,
-				tilte: action.title,
+				title: action.title,
 				body: action.body,
 			};
 			return [...state, newComment];

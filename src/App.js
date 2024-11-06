@@ -36,6 +36,8 @@ import { thunk } from "redux-thunk";
 import logger from "redux-logger";
 // import redux-devtools
 import { composeWithDevTools } from "@redux-devtools/extension";
+// import react-redux provider
+import { Provider } from "react-redux";
 
 export default function App() {
 	const store = legacy_createStore(
@@ -48,19 +50,33 @@ export default function App() {
 		composeWithDevTools()
 	);
 
-	store.subscribe(() => console.log(store.getState()));
-	// store.dispatch(addUserActionCreator(1, "Yashar"));
-	// store.dispatch(addUserActionCreator(2, "Medi"));
+	// store.subscribe(() => console.log(store.getState()));
+	store.dispatch(addUserActionCreator(1, "Yashar"));
+	store.dispatch(addUserActionCreator(2, "Medi"));
+	store.dispatch(addUserActionCreator(3, "Moji"));
+	store.dispatch(addUserActionCreator(4, "Hesam"));
+
+	store.dispatch(addCourseActionCreator(1, "JavaScript"));
+	store.dispatch(addCourseActionCreator(2, "React"));
+	store.dispatch(addCourseActionCreator(3, "Next"));
+	store.dispatch(addCourseActionCreator(4, "Redux"));
+
+	store.dispatch(addCommentActionCreator(1, "Max"));
+	store.dispatch(addCommentActionCreator(2, "Mickeal"));
+	store.dispatch(addCommentActionCreator(3, "Tom"));
+	store.dispatch(addCommentActionCreator(4, "Forrest"));
 
 	// this api request handle with thunk middleware
 	// store.dispatch(getCommentsActionCreatorStart('https://jsonplaceholder.typicode.com/users'))
 	// this api request handle with apicall middleware
 	// store.dispatch(getUsersActionCreatorStart("https://jsonplaceholder.typicode.com/users"))
 	return (
-		<div className="container m-auto flex flex-col items-center justify-center">
-			<Users />
-			<Comments />
-			<Courses />
-		</div>
+		<Provider store={store}>
+			<div className="container m-auto mt-8 flex items-center justify-center">
+				<Users />
+				<Comments />
+				<Courses />
+			</div>
+		</Provider>
 	);
 }

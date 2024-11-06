@@ -8,7 +8,7 @@ export default function Reducer(state = [], action) {
 		case addCourseActionType: {
 			let newCourse = {
 				id: action.id,
-				tilte: action.title,
+				title: action.title,
 			};
 			return [...state, newCourse];
 		}

@@ -1,9 +1,24 @@
 import React from "react";
+import { connect } from "react-redux";
 
-export default function Courses() {
+function Courses(props) {
+	console.log(props.course);
 	return (
-		<div className="text-[#5f9ea0]">
-			<h1>Courses</h1>
+		<div className="text-[#5f9ea0] p-4">
+			<h1 className="text-xl">Courses</h1>
+			<ul className="list-disc pl-4">
+				{props.course.map((course) => (
+					<li key={course.id} className="text-sm">
+						{course.title}
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 }
+
+function mapStateToProps(state) {
+	return { course: state.Courses };
+}
+
+export default connect(mapStateToProps)(Courses);
