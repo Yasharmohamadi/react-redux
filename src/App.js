@@ -1,19 +1,27 @@
 import React from "react";
+// import components
+import Users from "./Components/Users";
+import Comments from "./Components/Comments";
+import Courses from "./Components/Courses";
+// Import redux
 import { applyMiddleware, combineReducers, legacy_createStore } from "redux";
 // add reducers
 import UserReducer from "./Redux/Stores/Users";
 import CourseReducer from "./Redux/Stores/Courses";
 import CommentReducer from "./Redux/Stores/Comments";
 // add actions creators
+// -------- USERS STORE ---------
 import {
 	addUserActionCreator,
 	// removeUserActionCreator,
 	getUsersActionCreatorStart,
 } from "./Redux/Stores/Users";
-// import {
-// 	addCourseActionCreator,
-// 	removeCourseActionCreator,
-// } from "./Redux/Stores/Courses";
+// -------- COURSES STORE ---------
+import {
+	addCourseActionCreator,
+	removeCourseActionCreator,
+} from "./Redux/Stores/Courses";
+// -------- COMMNETS STORE ---------
 import {
 	addCommentActionCreator,
 	removeCommentActionCreator,
@@ -29,8 +37,7 @@ import logger from "redux-logger";
 // import redux-devtools
 import { composeWithDevTools } from "@redux-devtools/extension";
 
-
-export default function App({ counter, onIncrement, onDecrement, onReset }) {
+export default function App() {
 	const store = legacy_createStore(
 		combineReducers({
 			Users: UserReducer,
@@ -38,33 +45,22 @@ export default function App({ counter, onIncrement, onDecrement, onReset }) {
 			Comments: CommentReducer,
 		}),
 		// applyMiddleware(Logger("test params"), ApiCall, thunk),
-		composeWithDevTools(),
+		composeWithDevTools()
 	);
 
 	store.subscribe(() => console.log(store.getState()));
-	store.dispatch(addUserActionCreator(1, "Yashar"));
-	store.dispatch(addUserActionCreator(2, "Medi"));
+	// store.dispatch(addUserActionCreator(1, "Yashar"));
+	// store.dispatch(addUserActionCreator(2, "Medi"));
 
 	// this api request handle with thunk middleware
 	// store.dispatch(getCommentsActionCreatorStart('https://jsonplaceholder.typicode.com/users'))
 	// this api request handle with apicall middleware
 	// store.dispatch(getUsersActionCreatorStart("https://jsonplaceholder.typicode.com/users"))
-
 	return (
 		<div className="container m-auto flex flex-col items-center justify-center">
-			<h2 className="text-xl mt-8 mb-4 text-[#5f9ea0]">Counter Project</h2>
-			<div className="">
-				<h1 className="text-4xl mb-2 text-[#5f9ea0] text-center">{counter}</h1>
-				<button className="btn" id="decrement" onClick={onDecrement}>
-					decrement
-				</button>
-				<button className="btn" id="reset" onClick={onReset}>
-					reset
-				</button>
-				<button className="btn" id="increment" onClick={onIncrement}>
-					increment
-				</button>
-			</div>
+			<Users />
+			<Comments />
+			<Courses />
 		</div>
 	);
 }
