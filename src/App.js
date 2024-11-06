@@ -26,6 +26,8 @@ import { ApiCall } from "./Redux/MiddleWare/ApiCall";
 import { thunk } from "redux-thunk";
 // import redux-logger
 import logger from "redux-logger";
+// import redux-devtools
+import { composeWithDevTools } from "@redux-devtools/extension";
 
 
 export default function App({ counter, onIncrement, onDecrement, onReset }) {
@@ -35,11 +37,14 @@ export default function App({ counter, onIncrement, onDecrement, onReset }) {
 			Courses: CourseReducer,
 			Comments: CommentReducer,
 		}),
-		applyMiddleware(Logger("test params"), ApiCall, thunk, logger)
+		// applyMiddleware(Logger("test params"), ApiCall, thunk),
+		composeWithDevTools(),
 	);
 
 	store.subscribe(() => console.log(store.getState()));
 	store.dispatch(addUserActionCreator(1, "Yashar"));
+	store.dispatch(addUserActionCreator(2, "Medi"));
+
 	// this api request handle with thunk middleware
 	// store.dispatch(getCommentsActionCreatorStart('https://jsonplaceholder.typicode.com/users'))
 	// this api request handle with apicall middleware
