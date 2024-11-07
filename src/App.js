@@ -3,7 +3,7 @@ import React from "react";
 import Users from "./Components/Users";
 import Courses from "./Components/Courses";
 // add reducers
-import UserReducer from "./Redux/Stores/Users";
+import UserReducer, { removeUserAct } from "./Redux/Stores/Users";
 import CourseReducer from "./Redux/Stores/Courses"; // add actions creators
 // -------- USERS STORE ---------
 import {
@@ -25,24 +25,19 @@ export default function App() {
 			Users: UserReducer,
 			Courses: CourseReducer,
 		},
-		devTools: false, // default true
+		devTools: true, // default true
 		middleware: () => new Tuple(ApiCall),
 	});
 
 	// store.subscribe(() => console.log(store.getState()));
+	store.dispatch(addUserAct({ id: 11, name: "Yashar" }));
+	store.dispatch(removeUserAct({ id: 11}));
+
+	store.dispatch(addCourseAct({ id: 1, title: "JavaScript" }));
+
 	store.dispatch(
-		addUserAct({ id: Math.floor(Math.random() * 1000), name: "Yashar" })
+		getUsersActStart({ url: "https://jsonplaceholder.typicode.com/users" })
 	);
-
-
-	store.dispatch(
-		addCourseAct({ id: Math.floor(Math.random() * 1000), title: "JavaScript" })
-	);
-
-
-	// store.dispatch(
-	// 	getUsersActStart({ url: "https://jsonplaceholder.typicode.com/users" })
-	// );
 
 	return (
 		<Provider store={store}>

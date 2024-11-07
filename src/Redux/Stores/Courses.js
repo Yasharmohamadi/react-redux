@@ -1,27 +1,14 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createAction, createReducer } from "@reduxjs/toolkit";
 
-export const addCourseAct = createAction("ADD_COURSE")
-export const removeCourseAct = createAction("REMOVE_COURSE")
+export const addCourseAct = createAction("ADD_COURSE");
+export const removeCourseAct = createAction("REMOVE_COURSE");
 
 // Reducer
-export default function Reducer(state = [], action) {
-	switch (action.type) {
-		case addCourseAct.type: {
-			let newCourse = {
-				id: action.payload.id,
-				title: action.payload.title,
-			};
-			return [...state, newCourse];
-		}
-
-		case removeCourseAct.type: {
-			let filteredState = [...state].filter(
-				(course) => course.id !== action.payload.id
-			);
-			return filteredState;
-		}
-		default: {
-			return state;
-		}
-	}
-}
+export default createReducer([], (builder) => {
+	builder.addCase(addCourseAct, (state, action) => {
+		state.push(action.payload);
+	});
+	builder.addCase(removeCourseAct, (state, action) => {
+		state.filter((course) => course.id !== action.payload.id);
+	});
+});
