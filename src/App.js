@@ -61,10 +61,10 @@ export default function App() {
 	store.dispatch(addCourseActionCreator(3, "Next"));
 	store.dispatch(addCourseActionCreator(4, "Redux"));
 
-	store.dispatch(addCommentActionCreator(1, "Max"));
-	store.dispatch(addCommentActionCreator(2, "Mickeal"));
-	store.dispatch(addCommentActionCreator(3, "Tom"));
-	store.dispatch(addCommentActionCreator(4, "Forrest"));
+	store.dispatch(addCommentActionCreator(1, "Max", ""));
+	store.dispatch(addCommentActionCreator(2, "Mickeal", ""));
+	store.dispatch(addCommentActionCreator(3, "Tom", ""));
+	store.dispatch(addCommentActionCreator(4, "Forrest", ""));
 
 	// this api request handle with thunk middleware
 	// store.dispatch(getCommentsActionCreatorStart('https://jsonplaceholder.typicode.com/users'))
@@ -72,7 +72,7 @@ export default function App() {
 	// store.dispatch(getUsersActionCreatorStart("https://jsonplaceholder.typicode.com/users"))
 	return (
 		<Provider store={store}>
-			<div className="container m-auto mt-8 flex items-center justify-center">
+			<div className="container m-auto mt-8 flex justify-center">
 				<Users />
 				<Comments />
 				<Courses />
