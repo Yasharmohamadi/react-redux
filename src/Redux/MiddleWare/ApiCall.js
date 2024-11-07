@@ -1,17 +1,14 @@
-import {
-	getUsersActionCreatorSuccess,
-	getUsersActionCreatorError,
-	getUsersActionTypeStart,
-} from "../Stores/Users";
-
+import { getUsersActStart,getUsersActSuccess, getUsersActError } from "../Stores/Users";
 
 export const ApiCall = ({ dispatch }) => (next) => (action) => {
-	if (action.type !== getUsersActionTypeStart) {
+	// console.log(action);
+	if (action.type !== getUsersActStart.type) {
+		
 		return next(action);
 	}
 
-	fetch(action.url)
+	fetch(action.payload.url)
 		.then((response) => response.json())
-		.then((data) => dispatch(getUsersActionCreatorSuccess(data)))
-		.catch((error) => dispatch(getUsersActionCreatorError(error)));
+		.then((data) => dispatch(getUsersActSuccess({data})))
+		.catch((error) => dispatch(getUsersActError({error})));
 };

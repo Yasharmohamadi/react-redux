@@ -1,16 +1,22 @@
 import React from "react";
-import { connect } from "react-redux";
-import { addCourseActionCreator } from "../Redux/Stores/Courses";
+import { addCourseAct } from "../Redux/Stores/Courses";
+import { useDispatch, useSelector } from "react-redux";
 
-function Courses(props) {
+export default function Courses(props) {
+	const dispatch = useDispatch();
+	const courses = useSelector((state) => state.Courses);
+
+	const addNewCourse = () => {
+		dispatch(addCourseAct({ id: Math.floor(Math.random() * 1000), title: "Redux" }));
+	};
 	return (
 		<div className="text-[#5f9ea0] p-4">
 			<h1 className="text-xl">Courses</h1>
-			<button className="btn text-black text-sm" onClick={props.addNewCourse}>
+			<button className="btn text-black text-sm" onClick={addNewCourse}>
 				Add New Course
 			</button>
 			<ul className="list-disc pl-4">
-				{props.course.map((course) => (
+				{courses.map((course) => (
 					<li key={course.id} className="text-sm">
 						{course.title}
 					</li>
@@ -19,15 +25,3 @@ function Courses(props) {
 		</div>
 	);
 }
-
-function mapStateToProps(state) {
-	return { course: state.Courses };
-}
-
-function mapDispatchToProps(dispatch) {
-	return {
-		addNewCourse: () => dispatch(addCourseActionCreator(5, "Tailwind")),
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Courses);
