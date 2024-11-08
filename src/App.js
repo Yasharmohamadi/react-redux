@@ -35,9 +35,9 @@ export default function App() {
 
 	store.dispatch(addCourseAct({ id: 1, title: "JavaScript" }));
 
-	store.dispatch(
-		getUsersActStart({ url: "https://jsonplaceholder.typicode.com/users" })
-	);
+	// store.dispatch(
+	// 	getUsersActStart({ url: "https://jsonplaceholder.typicode.com/users" })
+	// );
 
 	return (
 		<Provider store={store}>

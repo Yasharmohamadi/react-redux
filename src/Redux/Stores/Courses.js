@@ -1,14 +1,17 @@
-import { createAction, createReducer } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-export const addCourseAct = createAction("ADD_COURSE");
-export const removeCourseAct = createAction("REMOVE_COURSE");
-
-// Reducer
-export default createReducer([], (builder) => {
-	builder.addCase(addCourseAct, (state, action) => {
-		state.push(action.payload);
-	});
-	builder.addCase(removeCourseAct, (state, action) => {
-		state.filter((course) => course.id !== action.payload.id);
-	});
+const slice = createSlice({
+	name: "Courses",
+	initialState: [],
+	reducers: {
+		addCourseAct(state, action) {
+			state.push(action.payload);
+		},
+		removeCourseAct(state, action) {
+			state.filter((course) => course.id !== action.payload.id);
+		},
+	},
 });
+
+export default slice.reducer;
+export const { addCourseAct, removeCourseAct } = slice.actions;

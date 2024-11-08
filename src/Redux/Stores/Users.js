@@ -14,7 +14,6 @@ export default createReducer([], (builder) => {
 	});
 	builder.addCase(removeUserAct, (state, action) => {
 		state.filter((user) => user.id !== action.payload.id);
-
 	});
 	builder.addCase(getUsersActSuccess, (state, action) => {
 		state.push(...action.payload.data);
