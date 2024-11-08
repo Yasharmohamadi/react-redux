@@ -11,7 +11,12 @@ import {
 	// removeUserAct,
 	getUsersActStart,
 } from "./Redux/Stores/Users";
-import { addCourseAct, removeCourseAct } from "./Redux/Stores/Courses";
+// -------- COURSES STORE ---------
+import {
+	addCourseAct,
+	removeCourseAct,
+	getCoursesFromServer,
+} from "./Redux/Stores/Courses";
 // import middle wares
 import { ApiCall } from "./Redux/MiddleWare/ApiCall";
 
@@ -26,18 +31,21 @@ export default function App() {
 			Courses: CourseReducer,
 		},
 		devTools: true, // default true
-		middleware: () => new Tuple(ApiCall),
+		// middleware: () => new Tuple(ApiCall),
 	});
 
 	// store.subscribe(() => console.log(store.getState()));
 	store.dispatch(addUserAct({ id: 11, name: "Yashar" }));
-	store.dispatch(removeUserAct({ id: 11}));
+	store.dispatch(removeUserAct({ id: 11 }));
 
 	store.dispatch(addCourseAct({ id: 1, title: "JavaScript" }));
 
 	// store.dispatch(
 	// 	getUsersActStart({ url: "https://jsonplaceholder.typicode.com/users" })
 	// );
+	store.dispatch(
+		getCoursesFromServer("https://jsonplaceholder.typicode.com/users")
+	);
 
 	return (
 		<Provider store={store}>

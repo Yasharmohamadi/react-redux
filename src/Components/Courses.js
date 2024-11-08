@@ -18,7 +18,7 @@ export default function Courses(props) {
 			<ul className="list-disc pl-4">
 				{courses.map((course) => (
 					<li key={course.id} className="text-sm">
-						{course.title}
+						{(course.title) || (course.name)} 
 					</li>
 				))}
 			</ul>
