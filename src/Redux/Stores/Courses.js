@@ -22,7 +22,6 @@ const slice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder.addCase(getCoursesFromServer.fulfilled, (state, action) => {
-			console.log(action.payload);
 			state.push(...action.payload)
 		});
 	},
